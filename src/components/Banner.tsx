@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image";
+import Link from "next/link";
 
 const Banner = () => {
 
@@ -10,7 +11,7 @@ const Banner = () => {
     return (
         <div className="container mx-auto px-4">
 
-            <div className="p-4 sm:p-6 rounded-3xl mt-6 sm:mt-8 bg-white">
+            <div className="p-4 sm:p-6 rounded-2xl mt-6 sm:mt-8 bg-white">
 
                 <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-4">
 
@@ -25,13 +26,13 @@ const Banner = () => {
                             আজকের বাজারের দাম এক নজরে
                         </h1>
 
-                        <p className="text-[#717171] text-base sm:text-lg lg:text-xl tracking-tight mb-5">
+                        <p className="text-[#717171] text-base sm:text-lg lg:text-xl tracking-tight mb-7">
                             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
                         </p>
 
-                        <button className="bg-[#05893E] px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-white text-base sm:text-xl">
+                        <Link href='/' className="bg-[#05893E] px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-white text-base sm:text-xl">
                             সব পণ্য দেখুন
-                        </button>
+                        </Link>
 
                     </div>
 
@@ -43,7 +44,7 @@ const Banner = () => {
                             alt="Banner Image"
                             height={500}
                             width={600}
-                            className="w-full max-w-90 h-auto"
+                            className="w-full max-w-100 h-auto"
                         />
 
                     </div>
