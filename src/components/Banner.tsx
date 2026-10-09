@@ -30,7 +30,7 @@ const Banner = () => {
                             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
                         </p>
 
-                        <Link href='/' className="bg-[#05893E] px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-white text-base sm:text-xl">
+                        <Link href='' className="bg-[#05893E] px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-white text-base sm:text-xl">
                             সব পণ্য দেখুন
                         </Link>
 

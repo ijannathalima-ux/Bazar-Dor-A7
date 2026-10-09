@@ -12,6 +12,28 @@ interface RisingProductsType {
     }
 }
 
+
+const getUnitInBangla = (unit: string) => {
+
+    if (unit === "kg") {
+        return "প্রতি কেজি";
+    }
+
+    if (unit === "dozen") {
+        return "প্রতি ডজন";
+    }
+
+    if (unit === "litre" || unit === "liter") {
+        return "প্রতি লিটার";
+    }
+
+    if (unit === "piece" || unit === "pcs") {
+        return "প্রতি পিস";
+    }
+
+    return unit;
+};
+
 const RisingProducts = async () => {
 
     const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
@@ -39,7 +61,7 @@ const RisingProducts = async () => {
                 {filteredProducts.map((rising) => (
                     <div
                         key={rising.id}
-                        className="bg-white rounded-2xl p-4 sm:p-5"
+                        className="bg-white  border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-green-400"
                     >
 
                         <div className="flex items-center gap-3 mb-5">
@@ -55,7 +77,7 @@ const RisingProducts = async () => {
                                     {rising.nameBn}
                                 </span>
                                 <span className="mt-1 text-xl text-gray-500">
-                                  প্রতি {rising.unit}
+                                    {getUnitInBangla(rising.unit)}
                                 </span>
                             </div>
 
@@ -68,13 +90,13 @@ const RisingProducts = async () => {
                         <div className="flex justify-between items-center gap-2">
 
                             <span className="text-xl font-semibold">
-                                {rising.today} টাকা
-                                
+                                {rising.today.toLocaleString("bn-BD")} টাকা
+
                             </span>
 
                             <span className="flex items-center gap-1 rounded-full bg-red-50 text-red-700 px-2 py-1 text-sm font-semibold">
                                 <FaCaretUp />
-                                {rising.change.pct}%
+                                {rising.change.pct.toLocaleString("bn-BD")}%
                             </span>
 
                         </div>

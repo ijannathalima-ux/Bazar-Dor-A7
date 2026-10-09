@@ -11,6 +11,28 @@ interface FallingProductsType {
     };
 }
 
+
+const getUnitInBangla = (unit: string) => {
+
+    if (unit === "kg") {
+        return "প্রতি কেজি";
+    }
+
+    if (unit === "dozen") {
+        return "প্রতি ডজন";
+    }
+
+    if (unit === "litre" || unit === "liter") {
+        return "প্রতি লিটার";
+    }
+
+    if (unit === "piece" || unit === "pcs") {
+        return "প্রতি পিস";
+    }
+
+    return unit;
+};
+
 const FallingProducts = async () => {
     const res = await fetch(
         "https://api.abcz.workers.dev/api/bazardor/products"
@@ -47,7 +69,7 @@ const FallingProducts = async () => {
                 {filteredProducts.map((falling) => (
                     <div
                         key={falling.id}
-                        className="bg-white rounded-2xl p-4 sm:p-5"
+                        className="bg-white border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-green-400"
                     >
 
                         <div className="flex items-center gap-3 mb-5">
@@ -63,7 +85,7 @@ const FallingProducts = async () => {
                                     {falling.nameBn}
                                 </span>
                                 <span className="mt-1 text-xl text-gray-500">
-                                   প্রতি {falling.unit}
+                                   {getUnitInBangla(falling.unit)}
                                 </span>
                             </div>
 
@@ -76,12 +98,12 @@ const FallingProducts = async () => {
                         <div className="flex justify-between items-center gap-2">
 
                             <span className="text-xl font-semibold">
-                                {falling.today} টাকা
+                                {falling.today.toLocaleString("bn-BD")} টাকা
                             </span>
 
                             <span className="flex items-center gap-1 rounded-full bg-green-50 text-green-700 px-2 py-1 text-sm font-semibold">
                                 <IoCaretDownOutline />
-                                {Math.abs(falling.change.pct)}%
+                                {Math.abs(falling.change.pct).toLocaleString("bn-BD")}%
                             </span>
 
                         </div>
