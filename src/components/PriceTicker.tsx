@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { FaCaretDown } from "react-icons/fa";
-import { IoCaretUpOutline } from "react-icons/io5";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { IoCaretUpSharp } from "react-icons/io5";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -20,7 +20,7 @@ interface PriceTickerType {
 
 const PriceTicker = async () => {
 
-    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
     const data = await res.json();
     const priceTicker: PriceTickerType[] = data;
 
@@ -52,9 +52,9 @@ const PriceTicker = async () => {
                                         : "text-gray-500"
                                     }`}
                             >
-                                {pt.change.dir === "up" && (<IoCaretUpOutline />)}
+                                {pt.change.dir === "up" && (<IoMdArrowDropdown />)}
 
-                                {pt.change.dir === "down" && (<FaCaretDown />)}
+                                {pt.change.dir === "down" && (<IoCaretUpSharp />)}
 
                                 {pt.change.dir === "flat" && ("—")}
 

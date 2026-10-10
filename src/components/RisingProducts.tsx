@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaCaretUp } from "react-icons/fa";
+import { IoCaretUpSharp } from "react-icons/io5";
 
 interface RisingProductsType {
     id: string;
@@ -36,7 +36,7 @@ const getUnitInBangla = (unit: string) => {
 
 const RisingProducts = async () => {
 
-    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
     const data = await res.json();
 
     const filteredProducts: RisingProductsType[] = data
@@ -49,7 +49,7 @@ const RisingProducts = async () => {
 
             {/* Heading */}
             <div className="flex gap-2 items-center mb-5">
-                <FaCaretUp className="text-red-700 text-3xl sm:text-4xl" />
+                <IoCaretUpSharp className="text-red-700 text-3xl sm:text-4xl" />
                 <h2 className="text-2xl sm:text-3xl font-bold">
                     আজ দাম বেড়েছে
                 </h2>
@@ -61,7 +61,7 @@ const RisingProducts = async () => {
                 {filteredProducts.map((rising) => (
                     <Link href={`/product-details/${rising.id}`}
                         key={rising.id}
-                        className="bg-white  border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-green-400"
+                        className="bg-white  border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-[#04bb53]"
                     >
 
                         <div className="flex items-center gap-3 mb-5">
@@ -95,7 +95,7 @@ const RisingProducts = async () => {
                             </span>
 
                             <span className="flex items-center gap-1 rounded-full bg-red-50 text-red-700 px-2 py-1 text-sm font-semibold">
-                                <FaCaretUp />
+                                <IoCaretUpSharp />
                                 {rising.change.pct.toLocaleString("bn-BD")}%
                             </span>
 

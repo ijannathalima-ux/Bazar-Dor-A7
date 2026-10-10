@@ -39,16 +39,14 @@ const getUnitInBangla = (unit: string) => {
 
 
 const AllProducts = async () => {
-    const res = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/products"
-    );
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
 
     const data = await res.json();
 
     const products: AllProductsType[] = data;
 
     return (
-        <div className="container mx-auto mt-8">
+        <div id="সব পণ্য" className="container mx-auto mt-8">
 
             {/* Heading */}
             <div className="grid gap-2 items-center mb-5">
@@ -65,7 +63,7 @@ const AllProducts = async () => {
                 {products.map((product) => (
                     <Link href={`/product-details/${product.id}`}
                         key={product.id}
-                        className="bg-white border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-green-400"
+                        className="bg-white border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-[#04bb53]"
                     >
 
                         <div className="flex items-center gap-3 mb-5">

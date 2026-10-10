@@ -5,7 +5,7 @@ import { FaCaretUp, FaCaretDown, FaGreaterThan } from "react-icons/fa";
 interface ProductDetailsType {
     id: string;
     image: string;
-    category:string;
+    category: string;
     nameBn: string;
     categoryNameBn: string;
     today: number;
@@ -31,12 +31,10 @@ const getUnitInBangla = (unit: string) => {
     return unit;
 };
 
-const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string }>;}) => {
+const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: string }>; }) => {
     const { productId } = await params;
 
-    const res = await fetch(
-        `https://api.api-store.workers.dev/api/bazardor/products/${productId}`
-    );
+    const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productId}`);
 
     const data = await res.json();
 
@@ -72,7 +70,7 @@ const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string
                     হোম
                 </Link>
 
-              <FaGreaterThan className="text-xs"/>
+                <FaGreaterThan className="text-xs" />
 
                 <Link
                     href={`/category/${productDetails.category}`}
@@ -81,13 +79,13 @@ const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string
                     {productDetails.categoryNameBn}
                 </Link>
 
-                <FaGreaterThan className="text-xs"/>
+                <FaGreaterThan className="text-xs" />
 
                 <span className="font-medium text-xl text-gray-800">
                     {productDetails.nameBn}
                 </span>
             </nav>
-   
+
 
 
             <div className="rounded-2xl bg-white p-4 sm:p-8">
@@ -113,15 +111,15 @@ const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string
 
                             <span className="mt-1 text-base sm:text-lg">
                                 {productDetails.change.pct > 0
-                                    ? "গতকালের তুলনায় আজ দাম বেড়েছে"
+                                    ? `গতকালের তুলনায় আজ দাম বেড়েছে · ${Math.abs(productDetails.today - productDetails.yesterday).toLocaleString("bn-BD")} টাকা`
                                     : productDetails.change.pct < 0
-                                        ? "গতকালের তুলনায় আজ দাম কমেছে"
+                                        ? `গতকালের তুলনায় আজ দাম কমেছে · ${Math.abs(productDetails.today - productDetails.yesterday).toLocaleString("bn-BD")} টাকা`
                                         : "গতকালের তুলনায় আজ দাম অপরিবর্তিত"}
                             </span>
                         </div>
                     </div>
 
-                    <div className="rounded-xl bg-gray-100 p-4 lg:min-w-48">
+                    <div className="rounded-xl bg-gray-100 p-4 lg:min-w-48 lg:text-center">
                         <h2>আজকের দাম</h2>
 
                         <p className="text-2xl font-semibold">
@@ -160,7 +158,7 @@ const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string
                     <div className="rounded-xl border border-[#E5E8E5] p-4">
                         <p className="text-gray-500">সর্বনিম্ন দাম</p>
                         <span className="text-xl font-semibold">
-                            {minPrice.toLocaleString("bn-BD")} টাকা
+                            <span className="text-red-600 text-2xl"> {minPrice.toLocaleString("bn-BD")} </span>টাকা
                         </span>
                         <p className="mt-1 text-sm text-gray-500">
                             সবচেয়ে কম দামের বাজার
@@ -170,7 +168,7 @@ const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string
                     <div className="rounded-xl border border-[#E5E8E5] p-4">
                         <p className="text-gray-500">সর্বাধিক দাম</p>
                         <span className="text-xl font-semibold">
-                            {maxPrice.toLocaleString("bn-BD")} টাকা
+                            <span className="text-red-600 text-2xl"> {maxPrice.toLocaleString("bn-BD")} </span>টাকা
                         </span>
                         <p className="mt-1 text-sm text-gray-500">
                             সবচেয়ে বেশি দামের বাজার
@@ -180,7 +178,7 @@ const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string
                     <div className="rounded-xl border border-[#E5E8E5] p-4">
                         <p className="text-gray-500">গড় দাম</p>
                         <span className="text-xl font-semibold">
-                            {averagePrice.toLocaleString("bn-BD")} টাকা
+                            <span className="text-red-600 text-2xl">{averagePrice.toLocaleString("bn-BD")}</span> টাকা
                         </span>
                         <p className="mt-1 text-sm text-gray-500">
                             বাজারগুলোর গড় আনুমানিক দাম
@@ -195,14 +193,14 @@ const ProductDetailsPage = async ({params}: {params: Promise<{ productId: string
                 </h2>
 
                 <div className="mt-4 overflow-x-auto rounded-xl border border-[#E5E8E5]">
-                    <table className="w-full min-w-[650px] text-left text-sm">
+                    <table className="w-full min-w-162 text-left text-sm">
                         <thead className="bg-white text-gray-600 ">
                             <tr>
-                                <th className="p-3 font-semibold text-[15px]">বাজার</th>
-                                <th className="p-3 font-semibold text-[15px]">বিভাগ</th>
-                                <th className="p-3 text-right font-semibold text-[15px]">সর্বনিম্ন</th>
-                                <th className="p-3 text-right font-semibold text-[15px] ">সর্বাধিক</th>
-                                <th className="p-3 text-right font-semibold text-[15px]">গড়</th>
+                                <th className="p-4 font-bold text-[17px]">বাজার</th>
+                                <th className="p-4 font-bold text-[17px]">বিভাগ</th>
+                                <th className="p-4 text-right font-bold text-[17px]">সর্বনিম্ন</th>
+                                <th className="p-4 text-right font-bold text-[17px] ">সর্বাধিক</th>
+                                <th className="p-4 text-right font-bold text-[17px]">গড়</th>
                             </tr>
                         </thead>
 

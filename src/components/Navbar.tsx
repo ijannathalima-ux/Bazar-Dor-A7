@@ -1,6 +1,5 @@
-"use client"
 import Image from "next/image";
-import Link from "next/link";
+import UserInfoPage from "./UserInfo";
 
 const Navbar = () => {
 
@@ -39,24 +38,7 @@ const Navbar = () => {
                 </div>
 
 
-                {/* Auth Buttons */}
-                <div className="flex gap-2 sm:gap-3 items-center">
-
-                    <Link
-                        href="/signin"
-                        className="text-base sm:text-[20px] font-semibold py-2 px-4 sm:py-3 sm:px-6"
-                    >
-                        সাইন ইন
-                    </Link>
-
-                    <Link
-                        href="/signup"
-                        className="text-base sm:text-[19px] font-semibold bg-[#05893E] text-white rounded-md py-2 px-4 sm:py-3 sm:px-6"
-                    >
-                        সাইন আপ
-                    </Link>
-
-                </div>
+                <UserInfoPage/>
 
             </div>
 

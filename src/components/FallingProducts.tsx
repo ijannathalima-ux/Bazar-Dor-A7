@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IoCaretDownOutline } from "react-icons/io5";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 interface FallingProductsType {
     id: string;
@@ -35,9 +35,7 @@ const getUnitInBangla = (unit: string) => {
 };
 
 const FallingProducts = async () => {
-    const res = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/products"
-    );
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
 
     const data = await res.json();
 
@@ -57,7 +55,7 @@ const FallingProducts = async () => {
 
             {/* Heading */}
             <div className="flex items-center gap-2 mb-5">
-                <IoCaretDownOutline className="text-green-700 text-3xl sm:text-4xl" />
+                <IoMdArrowDropdown className="text-green-700 text-3xl sm:text-4xl" />
 
                 <h2 className="text-2xl sm:text-3xl font-bold">
                     আজ দাম কমেছে
@@ -70,7 +68,7 @@ const FallingProducts = async () => {
                 {filteredProducts.map((falling) => (
                     <Link href={`/product-details/${falling.id}`}
                         key={falling.id}
-                        className="bg-white border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-green-400"
+                        className="bg-white border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-[#04bb53]"
                     >
 
                         <div className="flex items-center gap-3 mb-5">
@@ -103,7 +101,7 @@ const FallingProducts = async () => {
                             </span>
 
                             <span className="flex items-center gap-1 rounded-full bg-green-50 text-green-700 px-2 py-1 text-sm font-semibold">
-                                <IoCaretDownOutline />
+                                <IoMdArrowDropdown />
                                 {Math.abs(falling.change.pct).toLocaleString("bn-BD")}%
                             </span>
 
