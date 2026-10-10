@@ -1,9 +1,11 @@
 
+import Link from "next/link";
 import { FaCaretUp } from "react-icons/fa";
 
 interface AllProductsType {
     id: string;
     image: string;
+    category:string;
     nameBn: string;
     today: number;
     unit: string;
@@ -38,7 +40,7 @@ const getUnitInBangla = (unit: string) => {
 
 const AllProducts = async () => {
     const res = await fetch(
-        "https://api.abcz.workers.dev/api/bazardor/products"
+        "https://api.api-store.workers.dev/api/bazardor/products"
     );
 
     const data = await res.json();
@@ -61,7 +63,7 @@ const AllProducts = async () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                 {products.map((product) => (
-                    <div
+                    <Link href={`/product-details/${product.id}`}
                         key={product.id}
                         className="bg-white border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-green-400"
                     >
@@ -103,7 +105,7 @@ const AllProducts = async () => {
 
                         </div>
 
-                    </div>
+                    </Link>
                 ))}
 
             </div>

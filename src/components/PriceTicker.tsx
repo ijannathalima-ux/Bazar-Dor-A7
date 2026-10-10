@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaCaretDown } from "react-icons/fa";
 import { IoCaretUpOutline } from "react-icons/io5";
 import MarqueeText from "react-marquee-text";
@@ -5,6 +6,7 @@ import "react-marquee-text/dist/styles.css";
 
 interface PriceTickerType {
     id: string;
+    category:string;
     categoryIcon: string;
     nameBn: string;
     categoryNameBn: string;
@@ -18,7 +20,7 @@ interface PriceTickerType {
 
 const PriceTicker = async () => {
 
-    const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
     const data = await res.json();
     const priceTicker: PriceTickerType[] = data;
 
@@ -31,8 +33,8 @@ const PriceTicker = async () => {
 
                     {priceTicker.map((pt) => (
 
-                        <div key={pt.id}
-                            className="flex items-center gap-2 text-[18px] font-semibold whitespace-nowrap"
+                        <Link  href={`/product-details/${pt.id}`} key={pt.id}
+                            className="flex items-center gap-2 text-[18px] font-semibold whitespace-nowrap hover:underline"
                         >
                             <span>{pt.categoryIcon}</span>
 
@@ -59,7 +61,7 @@ const PriceTicker = async () => {
                                 {pt.change.pct}%
 
                             </span>
-                        </div>
+                        </Link>
                     ))}
 
                 </div>

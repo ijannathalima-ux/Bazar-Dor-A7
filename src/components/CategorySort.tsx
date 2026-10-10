@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { FaCaretUp } from "react-icons/fa";
 
@@ -77,7 +78,7 @@ const CategorySort = ({ products }: CategorySortProps) => {
             {/* Product Cards */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {sortedProducts.map((category) => (
-                    <div
+                    <Link href={`/product-details/${category.id}`}
                         key={category.id}
                         className="rounded-2xl border border-[#E5E8E5] bg-white p-4 transition-transform duration-300 hover:scale-105 hover:border-green-400 sm:p-5"
                     >
@@ -107,19 +108,18 @@ const CategorySort = ({ products }: CategorySortProps) => {
                             </span>
 
                             <span
-                                className={`flex items-center gap-1 rounded-full px-2 py-1 text-sm font-semibold ${
-                                    category.change.pct < 0
+                                className={`flex items-center gap-1 rounded-full px-2 py-1 text-sm font-semibold ${category.change.pct < 0
                                         ? "bg-green-50 text-green-700"
                                         : category.change.pct > 0
-                                          ? "bg-red-50 text-red-700"
-                                          : "bg-gray-100 text-gray-600"
-                                }`}
+                                            ? "bg-red-50 text-red-700"
+                                            : "bg-gray-100 text-gray-600"
+                                    }`}
                             >
                                 {category.change.pct > 0 && <FaCaretUp />}
                                 {category.change.pct.toLocaleString("bn-BD")}%
                             </span>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </>

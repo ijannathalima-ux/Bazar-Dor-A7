@@ -1,4 +1,3 @@
-
 import CategorySort from "@/components/CategorySort";
 
 interface CategoriesType {
@@ -14,37 +13,25 @@ interface CategoriesType {
     };
 }
 
-const CategoriesPage = async ({
-    params,
-}: {
-    params: Promise<{ categoryId: string }>;
-}) => {
+const CategoriesPage = async ({params,}: {params: Promise<{ categoryId: string }>}) => {
+
     const { categoryId } = await params;
-
-    const res = await fetch(
-        `https://api.abcz.workers.dev/api/bazardor/products?category=${categoryId}`
-    );
-
+    const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`);
     const data = await res.json();
     const categories: CategoriesType[] = data;
-
     const categoryName = categories[0]?.categoryNameBn;
     const categoryIcon = categories[0]?.categoryIcon;
 
     return (
         <div className="container mx-auto mt-8 px-4">
+
             {/* Category Heading */}
             <div className="mb-4 flex items-center gap-3 rounded-2xl border border-[#E5E8E5] bg-white p-4 transition-transform duration-300 hover:border-green-400 sm:p-5">
                 <span className="text-4xl">{categoryIcon}</span>
 
                 <div>
-                    <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
-                        {categoryName}
-                    </h1>
-
-                    <p className="text-base text-gray-500 sm:text-xl">
-                        {categories.length.toLocaleString("bn-BD")}টি পণ্যের আজকের দাম ও পরিবর্তন
-                    </p>
+                    <h1 className="mb-2 text-2xl font-bold sm:text-3xl">{categoryName}</h1>
+                    <p className="text-base text-gray-500 sm:text-xl">{categories.length.toLocaleString("bn-BD")}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
                 </div>
             </div>
 

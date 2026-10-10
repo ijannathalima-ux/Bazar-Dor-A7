@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 import { FaCaretUp } from "react-icons/fa";
 
 interface RisingProductsType {
@@ -36,7 +36,7 @@ const getUnitInBangla = (unit: string) => {
 
 const RisingProducts = async () => {
 
-    const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
     const data = await res.json();
 
     const filteredProducts: RisingProductsType[] = data
@@ -59,7 +59,7 @@ const RisingProducts = async () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                 {filteredProducts.map((rising) => (
-                    <div
+                    <Link href={`/product-details/${rising.id}`}
                         key={rising.id}
                         className="bg-white  border border-[#E5E8E5] rounded-2xl p-4 sm:p-5 hover:scale-105 transition-transform duration-300 hover:border hover:border-green-400"
                     >
@@ -101,7 +101,7 @@ const RisingProducts = async () => {
 
                         </div>
 
-                    </div>
+                    </Link>
                 ))}
 
             </div>
