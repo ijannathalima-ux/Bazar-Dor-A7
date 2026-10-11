@@ -1,11 +1,11 @@
 
 import Link from "next/link";
-import { FaCaretUp } from "react-icons/fa";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
 interface AllProductsType {
     id: string;
     image: string;
-    category:string;
+    category: string;
     nameBn: string;
     today: number;
     unit: string;
@@ -96,8 +96,20 @@ const AllProducts = async () => {
 
                             </span>
 
-                            <span className="flex items-center gap-1 rounded-full bg-red-50 text-red-700 px-2 py-1 text-sm font-semibold">
-                                <FaCaretUp />
+                            <span
+                                className={`flex items-center gap-1 rounded-full px-2 py-1 text-sm font-semibold ${product.change.pct > 0
+                                    ? "bg-green-50 text-green-700"
+                                    : product.change.pct < 0
+                                        ? "bg-red-50 text-red-700"
+                                        : "bg-gray-100 text-gray-600"
+                                    }`}
+                            >
+                                {product.change.pct > 0 ? (
+                                    <FaCaretUp />
+                                ) : product.change.pct < 0 ? (
+                                    <FaCaretDown />
+                                ) : null}
+
                                 {product.change.pct.toLocaleString("bn-BD")}%
                             </span>
 

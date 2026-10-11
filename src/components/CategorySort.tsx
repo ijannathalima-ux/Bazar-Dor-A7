@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { FaCaretUp } from "react-icons/fa";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
 interface CategoriesType {
     id: string;
@@ -108,14 +108,19 @@ const CategorySort = ({ products }: CategorySortProps) => {
                             </span>
 
                             <span
-                                className={`flex items-center gap-1 rounded-full px-2 py-1 text-sm font-semibold ${category.change.pct < 0
-                                        ? "bg-green-50 text-green-700"
-                                        : category.change.pct > 0
-                                            ? "bg-red-50 text-red-700"
-                                            : "bg-gray-100 text-gray-600"
+                                className={`flex items-center gap-1 rounded-full px-2 py-1 text-sm font-semibold ${category.change.pct > 0
+                                    ? "bg-green-50 text-green-700"
+                                    : category.change.pct < 0
+                                        ? "bg-red-50 text-red-700"
+                                        : "bg-gray-100 text-gray-600"
                                     }`}
                             >
-                                {category.change.pct > 0 && <FaCaretUp />}
+                                {category.change.pct > 0 ? (
+                                    <FaCaretUp />
+                                ) : category.change.pct < 0 ? (
+                                    <FaCaretDown />
+                                ) : null}
+
                                 {category.change.pct.toLocaleString("bn-BD")}%
                             </span>
                         </div>

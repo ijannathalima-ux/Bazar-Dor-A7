@@ -125,11 +125,11 @@ const SignInPage = () => {
                     </div>
 
                     <div className="flex justify-between">
-                        <button onClick={handleGoogleSignIn} className="flex  gap-2 items-center p-6 font-bold btn text-black rounded-md mb-8">
+                        <button type="button" onClick={handleGoogleSignIn} className="flex  gap-2 items-center p-6 font-bold btn text-black rounded-md mb-8">
                             <FcGoogle className="text-2xl" />
                             Google দিয়ে চালিয়ে যান
                         </button>
-                        <button onClick={handleGithubSignIn} className="flex  gap-2 items-center p-6 font-bold btn text-black rounded-md mb-8">
+                        <button type="button" onClick={handleGithubSignIn} className="flex  gap-2 items-center p-6 font-bold btn text-black rounded-md mb-8">
                             <IoLogoGithub className="text-2xl" />
                             GitHub দিয়ে চালিয়ে যান
                         </button>

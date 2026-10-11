@@ -1,15 +1,20 @@
 "use client";
 
 import { FieldError, Input, Label, TextField } from "@heroui/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { authClient, signUp } from "../../lib/auth-client";
 import React from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoGithub } from "react-icons/io";
-import { error } from "console";
+
 
 const SignUpPage = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const callbackURL = searchParams.get("callbackURL") || "/";
     const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -19,17 +24,30 @@ const SignUpPage = () => {
             name: string;
             email: string;
             password: string;
+            confirmPassword: string;
         };
+
+        if (user.password.length < 8) {
+            toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে!");
+            return;
+        }
+
+        if (user.password !== user.confirmPassword) {
+            toast.error("দুইটি পাসওয়ার্ড মিলছে না!");
+            return;
+        }
 
         const { data, error } = await signUp.email({
             name: user.name,
             email: user.email,
             password: user.password,
-            callbackURL: "/",
+            callbackURL,
         });
 
         if (data) {
             toast.success("সাইন আপ সফল হয়েছে!");
+            router.push(callbackURL);
+            router.refresh();
             console.log(data);
         }
 
@@ -42,6 +60,7 @@ const SignUpPage = () => {
     const handleGoogleSignIn = async () => {
         const { data, error } = await authClient.signIn.social({
             provider: "google",
+            callbackURL,
         });
 
         if (data) {
@@ -55,6 +74,7 @@ const SignUpPage = () => {
     const handleGithubSignIn = async () => {
         const { data, error } = await authClient.signIn.social({
             provider: "github",
+            callbackURL,
         });
         if (data) {
             toast.success("Github অ্যাকাউন্ট দিয়ে সফলভাবে সাইন আপ হয়েছে!");
@@ -124,7 +144,7 @@ const SignUpPage = () => {
 
                         <TextField
                             isRequired
-                            name="password"
+                            name="confirmPassword"
                             type="password"
                             validate={(value) => {
                                 if (value.length < 8) {
@@ -135,7 +155,7 @@ const SignUpPage = () => {
                         >
                             <Label className="text-sm font-semibold text-[18px] text-black mb-2">পাসওয়ার্ড নিশ্চিত করুন</Label>
                             <Input placeholder="আবার লিখুন"
-                                name="password"
+                                name="confirmPassword"
                                 type="password"
                                 className="input w-md mb-3 rounded-md"
                                 required

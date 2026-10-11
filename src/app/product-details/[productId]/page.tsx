@@ -32,7 +32,7 @@ const getUnitInBangla = (unit: string) => {
 };
 
 const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: string }>; }) => {
-    
+
     const { productId } = await params;
 
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productId}`);
@@ -96,10 +96,8 @@ const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: str
             </nav>
 
 
-
-            <div className="rounded-2xl bg-white p-4 sm:p-8">
-
-                {/* Product Information */}
+            {/* Product Information */}
+            <div className="rounded-2xl bg-white p-4 sm:p-8 mb-8 border border-[#E5E8E5]">
                 <div className="flex flex-col justify-between gap-5 lg:flex-row">
                     <div className="mb-5 flex items-center gap-3">
                         <div className="rounded-lg bg-gray-100 p-3">
@@ -157,8 +155,10 @@ const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: str
                         </span>
                     </div>
                 </div>
+            </div>
 
-                {/* Price Summary */}
+            {/* Price Summary */}
+            <div className="rounded-2xl bg-white p-4 sm:p-8 border border-[#E5E8E5]">
                 <h2 className="mt-6 text-xl font-bold">
                     দামের সারসংক্ষেপ
                 </h2>
@@ -251,7 +251,9 @@ const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: str
                         </tbody>
                     </table>
                 </div>
+
             </div>
+
         </div>
     );
 };

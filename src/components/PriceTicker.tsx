@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { IoCaretUpSharp } from "react-icons/io5";
+import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
 interface PriceTickerType {
     id: string;
-    category:string;
+    category: string;
     categoryIcon: string;
     nameBn: string;
     categoryNameBn: string;
@@ -17,6 +16,16 @@ interface PriceTickerType {
         pct: number;
     };
 }
+
+
+const getUnitInBangla = (unit: string) => {
+    if (unit === "kg") return "প্রতি কেজি";
+    if (unit === "dozen") return "প্রতি ডজন";
+    if (unit === "litre" || unit === "liter") return "প্রতি লিটার";
+    if (unit === "piece" || unit === "pcs") return "প্রতি পিস";
+
+    return unit;
+};
 
 const PriceTicker = async () => {
 
@@ -33,16 +42,16 @@ const PriceTicker = async () => {
 
                     {priceTicker.map((pt) => (
 
-                        <Link  href={`/product-details/${pt.id}`} key={pt.id}
+                        <Link href={`/product-details/${pt.id}`} key={pt.id}
                             className="flex items-center gap-2 text-[18px] font-semibold whitespace-nowrap hover:underline"
                         >
                             <span>{pt.categoryIcon}</span>
 
                             <span>{pt.nameBn}</span>
 
-                            <span>টাকা {pt.today}</span>
+                            <span>টাকা {pt.today.toLocaleString("bn-BD")}</span>
 
-                            <span className="text-gray-500">/ {pt.unit}</span>
+                            <span className="text-gray-500">/ {getUnitInBangla(pt.unit)}</span>
 
                             <span
                                 className={`flex items-center gap-1 ${pt.change.dir === "up"
@@ -52,13 +61,13 @@ const PriceTicker = async () => {
                                         : "text-gray-500"
                                     }`}
                             >
-                                {pt.change.dir === "up" && (<IoMdArrowDropdown />)}
+                                {pt.change.dir === "up" && (<IoCaretUpSharp />)}
 
-                                {pt.change.dir === "down" && (<IoCaretUpSharp />)}
+                                {pt.change.dir === "down" && (<IoCaretDownSharp />)}
 
                                 {pt.change.dir === "flat" && ("—")}
 
-                                {pt.change.pct}%
+                                {pt.change.pct.toLocaleString("bn-BD")}%
 
                             </span>
                         </Link>
