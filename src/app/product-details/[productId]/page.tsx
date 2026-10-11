@@ -31,13 +31,15 @@ const getUnitInBangla = (unit: string) => {
     return unit;
 };
 
+export const instant = false;
+
 const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: string }>; }) => {
 
     const { productId } = await params;
 
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productId}`,
         {
-            cache: "no-store",
+            cache: "force-cache",
         }
     );
 

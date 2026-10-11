@@ -22,9 +22,9 @@ const Navbar = () => {
     );
 
     return (
-        <nav className="border-b border-gray-200 bg-white p-4">
+        <nav className="border-b sticky top-0 z-40 border-gray-200 bg-white p-4">
 
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center container mx-auto">
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-between  sm:items-center container mx-auto">
 
                 {/* Logo + Name + Date */}
                 <div className="flex gap-2 items-center">

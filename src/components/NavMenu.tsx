@@ -20,7 +20,7 @@ const NavMenu = async () => {
     return (
         <div className="border-b border-gray-200 bg-white p-3">
 
-            <div className="container mx-auto flex flex-wrap justify-center gap-2 sm:gap-3 md:justify-start">
+            <div className="container mx-auto flex flex-wrap  justify-center gap-2 sm:gap-3 md:justify-start">
 
                 {
                     navLinks.map((links) =>
