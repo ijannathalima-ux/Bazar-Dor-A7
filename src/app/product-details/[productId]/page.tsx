@@ -1,5 +1,5 @@
-
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { FaCaretUp, FaCaretDown, FaGreaterThan } from "react-icons/fa";
 
 interface ProductDetailsType {
@@ -32,11 +32,20 @@ const getUnitInBangla = (unit: string) => {
 };
 
 const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: string }>; }) => {
+    
     const { productId } = await params;
 
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productId}`);
 
+    if (!res.ok) {
+        notFound();
+    }
+
     const data = await res.json();
+
+    if (!data || !data.id || !data.nameBn) {
+        notFound();
+    }
 
     const productDetails: ProductDetailsType = data
     const markets = productDetails.markets ?? [];

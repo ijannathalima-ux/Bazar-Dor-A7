@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { LuCornerDownLeft } from "react-icons/lu";
 
 const UserInfoPage = () => {
     const { data: session } = authClient.useSession();
@@ -69,16 +70,17 @@ const UserInfoPage = () => {
                             <Link
                                 href="/profile"
                                 onClick={() => setIsOpen(false)}
-                                className="mt-2 block rounded-lg px-2 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                className="mt-2 mb-2 block rounded-lg px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                             >
                                 👤 আমার প্রোফাইল
                             </Link>
 
                             <button
                                 onClick={handleSignOut}
-                                className="w-full rounded-lg px-2 py-2 text-left text-sm text-red-500 hover:bg-red-50"
+                                className=" flex  gap-2 w-full rounded-lg px-2 py-2 text-left text-sm text-red-500 hover:bg-red-50 cursor-pointer"
                             >
-                                ↩ সাইন আউট
+                                <LuCornerDownLeft />
+                                 সাইন আউট
                             </button>
                         </div>
                     )}

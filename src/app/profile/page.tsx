@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LuCornerDownLeft } from "react-icons/lu";
 import { toast } from "react-toastify";
 
 const ProfilePage = () => {
@@ -22,9 +23,9 @@ const ProfilePage = () => {
                 name: name,
             });
 
-            toast.success("তথ্য সফলভাবে আপডেট হয়েছে!");
+            toast.success("আপনার প্রোফাইল সফলভাবে আপডেট হয়েছে!");
         } catch {
-            toast.error("তথ্য আপডেট করতে সমস্যা হয়েছে");
+            toast.error("তথ্য আপডেট করা যায়নি। আবার চেষ্টা করুন!");
         }
     };
 
@@ -32,8 +33,12 @@ const ProfilePage = () => {
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
+                    toast.success("আপনি সফলভাবে সাইন আউট করেছেন!");
                     router.push("/sign-in");
                 },
+                onError: () => {
+                    toast.error("সাইন আউট করা যায়নি। আবার চেষ্টা করুন!");
+                }
             },
         });
     };
@@ -77,9 +82,10 @@ const ProfilePage = () => {
 
                     <button
                         onClick={handleSignOut}
-                        className="rounded-md border border-red-600 px-4 py-2 font-semibold text-red-600 hover:bg-gray-100"
+                        className="flex gap-2 rounded-md border border-red-400 px-4 py-2 font-semibold text-red-600 hover:bg-red-100 cursor-pointer"
                     >
-                        ↩ সাইন আউট
+                        <LuCornerDownLeft />
+                        সাইন আউট
                     </button>
                 </div>
             </div>

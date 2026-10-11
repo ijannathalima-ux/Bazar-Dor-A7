@@ -3,7 +3,7 @@ import Image from "next/image";
 import { LuMoveLeft } from "react-icons/lu";
 
 
-const NotFoundPage = () => {
+const NotFound = () => {
     return (
         <main className="flex min-h-screen items-center justify-center bg-[#F8FAF5] px-4 py-10">
             <div className="w-full max-w-lg text-center">
@@ -36,4 +36,4 @@ const NotFoundPage = () => {
     );
 };
 
-export default NotFoundPage;
+export default NotFound;

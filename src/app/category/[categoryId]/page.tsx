@@ -1,4 +1,5 @@
 import CategorySort from "@/components/CategorySort";
+import { notFound } from "next/navigation";
 
 interface CategoriesType {
     id: string;
@@ -13,13 +14,26 @@ interface CategoriesType {
     };
 }
 
-const CategoriesPage = async ({params,}: {params: Promise<{ categoryId: string }>}) => {
+const CategoriesPage = async ({ params, }: { params: Promise<{ categoryId: string }> }) => {
 
     const { categoryId } = await params;
+
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`);
+
+    if (!res.ok) {
+        notFound();
+    }
+
     const data = await res.json();
+
+    if (!Array.isArray(data) || data.length === 0) {
+        notFound();
+    }
+
     const categories: CategoriesType[] = data;
+
     const categoryName = categories[0]?.categoryNameBn;
+
     const categoryIcon = categories[0]?.categoryIcon;
 
     return (

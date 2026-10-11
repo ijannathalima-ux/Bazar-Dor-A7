@@ -1,9 +1,12 @@
 "use client";
 
 import { FieldError, Input, Label, TextField } from "@heroui/react";
-import { signIn} from "../../lib/auth-client";
+import { authClient, signIn } from "../../lib/auth-client";
 import React from "react";
 import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
+import { IoLogoGithub } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const SignInPage = () => {
     const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -23,13 +26,43 @@ const SignInPage = () => {
         });
 
         if (data) {
+            toast.success("সাইন ইন সফল হয়েছে!");
             console.log(data);
         }
 
         if (error) {
+            toast.error("ইমেইল অথবা পাসওয়ার্ড ভুল, আবার চেষ্টা করুন!");
             console.log(error);
         }
     };
+
+    const handleGoogleSignIn = async () => {
+        const { data, error } = await authClient.signIn.social({
+            provider: "google",
+        });
+
+        if (data) {
+            toast.success("Google অ্যাকাউন্ট দিয়ে সফলভাবে সাইন ইন হয়েছে!");
+
+        }
+        if (error) {
+            toast.error("Google অ্যাকাউন্ট দিয়ে সাইন ইন করা যায়নি। আবার চেষ্টা করুন!");
+        }
+    }
+
+    const handleGithubSignIn = async () => {
+        const { data, error } = await authClient.signIn.social({
+            provider: "github",
+        });
+
+        if (data) {
+            toast.success("Github অ্যাকাউন্ট দিয়ে সফলভাবে সাইন ইন হয়েছে!");
+
+        }
+        if (error) {
+            toast.error("Github অ্যাকাউন্ট দিয়ে সাইন ইন করা যায়নি। আবার চেষ্টা করুন!");
+        }
+    }
 
     return (
         <div className="flex flex-col items-center justify-center mt-9">
@@ -43,7 +76,7 @@ const SignInPage = () => {
                     <fieldset className="fieldset rounded-box w-md p-4">
 
 
-                        <label className="label text-[20px] text-black">
+                        <label className="label text-[18px] text-black mb-2">
                             ইমেইল
                         </label>
 
@@ -66,7 +99,7 @@ const SignInPage = () => {
                                 return null;
                             }}
                         >
-                            <Label className="text-sm font-semibold text-zinc-700">পাসওয়ার্ড</Label>
+                            <Label className="text-[18px] font-semibold text-black mb-2">পাসওয়ার্ড</Label>
                             <Input placeholder="কমপক্ষে ৮ অক্ষর"
                                 name="password"
                                 type="password"
@@ -81,17 +114,28 @@ const SignInPage = () => {
 
                         <button
                             type="submit"
-                            className="btn btn-neutral bg-[#05893E] rounded-2xl text-white mt-4 border border-none"
+                            className="btn btn-neutral text-[18px] bg-[#05893E] rounded-2xl text-white mt-4 border border-none"
                         >
                             সাইন ইন
                         </button>
                     </fieldset>
 
-                    <div className="flex items-center my-5 text-[16px] text-zinc-500 font-bold uppercase tracking-wider before:flex-1 before:border-t before:border-zinc-200 before:mr-3 after:flex-1 after:border-t after:border-zinc-200 after:ml-3">
+                    <div className="flex items-center my-5 text-[18px] text-zinc-600 font-bold uppercase tracking-wider before:flex-1 before:border-t before:border-zinc-200 before:mr-3 after:flex-1 after:border-t after:border-zinc-200 after:ml-3">
                         অথবা
                     </div>
 
-                    <div className="text-center text-sm font-medium text-zinc-600">
+                    <div className="flex justify-between">
+                        <button onClick={handleGoogleSignIn} className="flex  gap-2 items-center p-6 font-bold btn text-black rounded-md mb-8">
+                            <FcGoogle className="text-2xl" />
+                            Google দিয়ে চালিয়ে যান
+                        </button>
+                        <button onClick={handleGithubSignIn} className="flex  gap-2 items-center p-6 font-bold btn text-black rounded-md mb-8">
+                            <IoLogoGithub className="text-2xl" />
+                            GitHub দিয়ে চালিয়ে যান
+                        </button>
+                    </div>
+
+                    <div className="text-center text-sm font-medium text-black">
                         অ্যাকাউন্ট আছে?{" "}
                         <Link href="/sign-up" className="text-[#008744] hover:underline font-bold transition">
                             সাইন আপ করুন

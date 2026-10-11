@@ -1,10 +1,13 @@
 "use client";
 
 import { FieldError, Input, Label, TextField } from "@heroui/react";
-import { signUp } from "../../lib/auth-client";
+import { authClient, signUp } from "../../lib/auth-client";
 import React from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
+import { IoLogoGithub } from "react-icons/io";
+import { error } from "console";
 
 const SignUpPage = () => {
     const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -26,14 +29,41 @@ const SignUpPage = () => {
         });
 
         if (data) {
+            toast.success("সাইন আপ সফল হয়েছে!");
             console.log(data);
         }
 
         if (error) {
+            toast.error("ইমেইল অথবা পাসওয়ার্ড ভুল, আবার চেষ্টা করুন!");
             console.log(error);
-            toast.error("User already exists. Use another email")
         }
     };
+
+    const handleGoogleSignIn = async () => {
+        const { data, error } = await authClient.signIn.social({
+            provider: "google",
+        });
+
+        if (data) {
+            toast.success("Google অ্যাকাউন্ট দিয়ে সফলভাবে সাইন আপ হয়েছে!");
+            console.log(data)
+        }
+        if (error) {
+            toast.error("Google অ্যাকাউন্ট দিয়ে সাইন আপ করা যায়নি। আবার চেষ্টা করুন!");
+        }
+    }
+    const handleGithubSignIn = async () => {
+        const { data, error } = await authClient.signIn.social({
+            provider: "github",
+        });
+        if (data) {
+            toast.success("Github অ্যাকাউন্ট দিয়ে সফলভাবে সাইন আপ হয়েছে!");
+            console.log(data)
+        }
+        if (error) {
+            toast.error("Github অ্যাকাউন্ট দিয়ে সাইন আপ করা যায়নি। আবার চেষ্টা করুন!");
+        }
+    }
 
     return (
         <div className="flex flex-col items-center justify-center mt-9">
@@ -45,7 +75,7 @@ const SignUpPage = () => {
 
                 <form onSubmit={onSubmit} className="bg-white mt-5 rounded-2xl p-8">
                     <fieldset className="fieldset rounded-box w-md p-4">
-                        <label className="label text-[20px] text-black">
+                        <label className="label text-[18px] text-black mb-2">
                             নাম
                         </label>
 
@@ -57,7 +87,7 @@ const SignUpPage = () => {
                             required
                         />
 
-                        <label className="label text-[20px] text-black">
+                        <label className="label text-[18px] text-black mb-2">
                             ইমেইল
                         </label>
 
@@ -80,7 +110,7 @@ const SignUpPage = () => {
                                 return null;
                             }}
                         >
-                            <Label className="text-sm font-semibold text-zinc-700">পাসওয়ার্ড</Label>
+                            <Label className="text-[18px] text-black font-semibold mb-2">পাসওয়ার্ড</Label>
                             <Input placeholder="কমপক্ষে ৮ অক্ষর"
                                 name="password"
                                 type="password"
@@ -103,7 +133,7 @@ const SignUpPage = () => {
                                 return null;
                             }}
                         >
-                            <Label className="text-sm font-semibold text-zinc-700">পাসওয়ার্ড নিশ্চিত করুন</Label>
+                            <Label className="text-sm font-semibold text-[18px] text-black mb-2">পাসওয়ার্ড নিশ্চিত করুন</Label>
                             <Input placeholder="আবার লিখুন"
                                 name="password"
                                 type="password"
@@ -118,17 +148,29 @@ const SignUpPage = () => {
 
                         <button
                             type="submit"
-                            className="btn btn-neutral bg-[#05893E] rounded-2xl text-white mt-4 border border-none"
+                            className="btn btn-neutral text-[18px] bg-[#05893E] rounded-2xl text-white mt-4 border border-none"
                         >
                             অ্যাকাউন্ট তৈরি করুন
                         </button>
                     </fieldset>
 
-                    <div className="flex items-center my-5 text-[16px] text-zinc-500 font-bold uppercase tracking-wider before:flex-1 before:border-t before:border-zinc-200 before:mr-3 after:flex-1 after:border-t after:border-zinc-200 after:ml-3">
+                    <div className="flex items-center my-5 text-[18px] text-zinc-500 font-bold uppercase tracking-wider before:flex-1 before:border-t before:border-zinc-200 before:mr-3 after:flex-1 after:border-t after:border-zinc-200 after:ml-3">
                         অথবা
                     </div>
 
-                    <div className="text-center text-sm font-medium text-zinc-600">
+
+                    <div className="flex justify-between">
+                        <button onClick={handleGoogleSignIn} className="flex  gap-2 items-center text-black p-6 font-bold btn rounded-md mb-8">
+                            <FcGoogle className="text-2xl" />
+                            Google দিয়ে চালিয়ে যান
+                        </button>
+                        <button onClick={handleGithubSignIn} className="flex  gap-2 items-center p-6 font-bold btn text-black rounded-md mb-8">
+                            <IoLogoGithub className="text-2xl" />
+                            GitHub দিয়ে চালিয়ে যান
+                        </button>
+                    </div>
+
+                    <div className="text-center text-sm font-medium text-black">
                         অ্যাকাউন্ট আছে?{" "}
                         <Link href="/sign-in" className="text-[#008744] hover:underline font-bold transition">
                             সাইন ইন করুন
