@@ -81,7 +81,6 @@ bazar-dor-a7/
 ├── public/
 └── proxy.ts
 ```
-
 ## 🎯 Project Goal
 
 The goal of Bazar Dor is to make daily market price information easier to access. Users can explore products, compare prices across markets, and understand price changes through a Bengali-language interface.
