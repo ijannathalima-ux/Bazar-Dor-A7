@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Bazar Dor — বাজার দর
 
-## Getting Started
+Bazar Dor is a Bengali market price tracking web application built with Next.js. It helps users explore daily product prices, compare market prices, track price changes, and find updated market information through a simple and responsive interface.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- View daily prices of different products.
+- Explore products with increasing and decreasing prices.
+- Browse products by category.
+- Sort products by price and name.
+- View detailed product information.
+- Compare minimum, average, and maximum market prices.
+- Track product price changes and percentages.
+- View scrolling market price updates.
+- Sign up and sign in using email and password.
+- Sign in with Google and GitHub.
+- Access protected product details after authentication.
+- Update profile information and sign out.
+- Receive notifications through toast messages.
+- Responsive design for mobile, tablet, and desktop.
+- Custom loading and 404 pages.
+
+## 🛠️ Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Better Auth
+- MongoDB
+- HeroUI
+- DaisyUI
+- React Icons
+- React Toastify
+- react-marquee-text
+- REST API
+
+## 🌐 API
+
+Bazar Dor uses the following API to retrieve product and market price information.
+
+**Base URL:**
+
+`https://openapi.programming-hero.com/api/bazardor`
+
+**Products Endpoint:**
+
+`/products`
+
+**Categories Endpoint:**
+
+`/categories`
+
+
+## 🔐 Authentication
+
+The application uses Better Auth and MongoDB for authentication and user management.
+
+- Email and password authentication.
+- Google and GitHub sign-in options.
+- User session management.
+- Protected product detail pages.
+- Profile information updates.
+- Sign-out functionality.
+
+## 📁 Project Structure
+
+```text
+bazar-dor-a7/
+├── app/
+│   ├── category/
+│   ├── product-details/
+│   ├── sign-in/
+│   ├── sign-up/
+│   ├── profile/
+│   ├── loading.tsx
+│   ├── not-found.tsx
+│   └── layout.tsx
+├── components/
+├── lib/
+├── public/
+└── proxy.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Project Goal
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The goal of Bazar Dor is to make daily market price information easier to access. Users can explore products, compare prices across markets, and understand price changes through a Bengali-language interface.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👩‍💻 Developer
 
-## Learn More
+**Israt Jannat Halima**
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Frontend Developer | Aspiring Full-Stack Developer
