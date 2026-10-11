@@ -1,13 +1,25 @@
-"use client"
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useSyncExternalStore } from "react";
+
+const getDate = () =>
+    new Date().toLocaleDateString("bn-BD", {
+        dateStyle: "full",
+    });
+
+const subscribe = () => () => { };
+
+const getServerDate = () => "";
 
 const Banner = () => {
 
-    const date = new Date().toLocaleDateString("bn-BD", {
-        dateStyle: "full"
-    })
-
+    const date = useSyncExternalStore(
+        subscribe,
+        getDate,
+        getServerDate
+    );
     return (
         <div className="container mx-auto px-4">
 

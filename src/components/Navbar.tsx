@@ -1,11 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import UserInfoPage from "./UserInfo";
+import { useSyncExternalStore } from "react";
+
+const getDate = () =>
+    new Date().toLocaleDateString("bn-BD", {
+        dateStyle: "full",
+    });
+
+const subscribe = () => () => { };
+
+const getServerDate = () => "";
 
 const Navbar = () => {
 
-    const date = new Date().toLocaleDateString("bn-BD", {
-        dateStyle: "full"
-    });
+    const date = useSyncExternalStore(
+        subscribe,
+        getDate,
+        getServerDate
+    );
 
     return (
         <nav className="border-b border-gray-200 bg-white p-4">
@@ -38,7 +52,7 @@ const Navbar = () => {
                 </div>
 
 
-                <UserInfoPage/>
+                <UserInfoPage />
 
             </div>
 

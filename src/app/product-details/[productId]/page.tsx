@@ -35,7 +35,11 @@ const ProductDetailsPage = async ({ params }: { params: Promise<{ productId: str
 
     const { productId } = await params;
 
-    const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productId}`);
+    const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productId}`,
+        {
+            cache: "no-store",
+        }
+    );
 
     if (!res.ok) {
         notFound();

@@ -29,7 +29,11 @@ const getUnitInBangla = (unit: string) => {
 
 const PriceTicker = async () => {
 
-    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products",
+        {
+            cache:"force-cache"
+        }
+    );
     const data = await res.json();
     const priceTicker: PriceTickerType[] = data;
 
