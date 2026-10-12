@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme = "light"
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#F0F5F0]">
+      <body className="min-h-full flex flex-col bg-[#f0f4f5]">
         <Navbar/>
         <NavMenu/>
         <PriceTicker/>
